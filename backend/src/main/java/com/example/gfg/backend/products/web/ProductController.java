@@ -32,6 +32,12 @@ public class ProductController {
             @RequestParam("search") String search,
             @RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
             @RequestParam(value = "pageSize", required = false, defaultValue = "25") Integer pageSize) {
+
+        if (page <= 0 || pageSize <= 0) {
+            log.error("invalid parameter, page:{}, pageSize{}", page, pageSize);
+            throw new IllegalArgumentException("Invalid parameters");
+        }
+
         log.info("getting entries by search:{}, page:{}, pageSize{}", search, page, pageSize);
         return productService.searchProducts(search, page, pageSize);
     }
