@@ -1,4 +1,4 @@
-#List and Search in a Product Catalog
+# List and Search in a Product Catalog
 
 This application was developed using Spring Boot for backend, React for frontend and MySql as database.
 
@@ -10,24 +10,24 @@ docker-compose up
 ```
  And visit [http://localhost:3000](http://localhost:3000) to see the application in action.
 
-##Set Up
+## Set Up
 
 All configuration based on Environment variables, so if you want to adjust it to your own needs, please check **docker-compose.yml**.
 
-###Initial data
+### Initial data
 
 Application has initial data preset.
 It writes to the database during the first docker-compose run.
 Data itself was taken from the [https://data.world/crowdflower/wearable-technology-database](https://data.world/crowdflower/wearable-technology-database)
 
-##Run tests
+## Run tests
 
-###Frontend
+### Frontend
 ```bash
 cd frontend && npm i && npm test
 ```
 
-###Backend (Java 12 should be used)
+### Backend (Java 12 should be used)
 ```bash
 ./gradlew test
 ```
