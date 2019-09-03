@@ -1,5 +1,8 @@
 package com.example.gfg.backend.products;
 
+import com.example.gfg.backend.products.data.Product;
+import com.example.gfg.backend.products.repository.ProductRepository;
+import com.example.gfg.backend.products.service.ProductService;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,8 +23,8 @@ public class ProductServiceTest {
 
     @Before
     public void setUp() {
-        productService = new ProductService();
         mockedProductRepository = mock(ProductRepository.class);
+        productService = new ProductService(mockedProductRepository);
         ReflectionTestUtils.setField(productService, "repository", mockedProductRepository);
     }
 
@@ -47,7 +50,7 @@ public class ProductServiceTest {
         when(mockedProductRepository.findBySearchInput(anyString(), anyInt(), anyInt())).thenReturn(products);
         when(mockedProductRepository.findMostRated(anyInt())).thenReturn(products);
 
-        productService.searchProducts("Levis", 20, 1);
+        productService.searchProducts("Levis", 1, 20);
 
         verify(mockedProductRepository, times(1)).findBySearchInput("+Levis", 20, 20);
         verify(mockedProductRepository, times(1)).findBySearchInput("Levis", 20, 20);

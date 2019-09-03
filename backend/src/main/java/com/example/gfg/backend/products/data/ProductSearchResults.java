@@ -1,18 +1,14 @@
-package com.example.gfg.backend.products;
+package com.example.gfg.backend.products.data;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-enum ResultType {
-    ALL,
-    EXACT,
-    RELEVANT,
-    MOST_POPULAR
-}
-
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class ProductSearchResults {
     private List<Product> products;
     private ResultType type;

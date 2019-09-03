@@ -1,4 +1,4 @@
-package com.example.gfg.backend.products;
+package com.example.gfg.backend.products.data;
 
 import lombok.Data;
 

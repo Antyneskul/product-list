@@ -1,5 +1,5 @@
-package com.example.gfg.backend.products;
-
+package com.example.gfg.backend.products.repository;
+import com.example.gfg.backend.products.data.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.rest.core.annotation.RestResource;
@@ -13,7 +13,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
             "group by brand, id " +
             "limit ?2 offset ?3",
             nativeQuery = true)
-    List<Product> findBySearchInput(String search, int pageSize, int page);
+    List<Product> findBySearchInput(String search, int pageSize, int offset);
 
     @Query(value = "SELECT COUNT(*) FROM product WHERE match(title) against (?1 in boolean mode)", nativeQuery = true)
     int getTotal(String search);
