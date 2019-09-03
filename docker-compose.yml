@@ -20,7 +20,7 @@ services:
      - 8080:8080
    environment:
      WAIT_HOSTS: mysqldb:3306
-     MYSQL_DATABASE: 'db'
+     MYSQL_DATABASE: 'db' #this DB name is used in db_product.sql
      MYSQL_USER: 'user'
      MYSQL_PASSWORD: 'password'
      MYSQL_HOST: mysqldb
