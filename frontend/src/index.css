@@ -1,0 +1,48 @@
+body {
+    margin: 0 auto;
+    width: 80%;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+input:focus,
+textarea:focus,
+select:focus,
+button:focus {
+    outline: none;
+}
+
+
+.btn {
+    display: inline-block;
+    line-height: 50px;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 4px;
+    font-size: 1em;
+    padding: 0 10px;
+    font-weight: bold;
+    color: #F7F4EA;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: #75C9C8;
+    border-color: #75C9C8;
+}
+
+.btn-secondary {
+    background: #C0B9DD;
+    border-color: #C0B9DD;
+}
+
+.btn + .btn {
+  margin-left: 20px;
+}
+
+.error {
+    color: #FF6978
+}
