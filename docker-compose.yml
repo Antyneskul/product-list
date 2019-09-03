@@ -1,0 +1,32 @@
+version: '3.3'
+services:
+  mysqldb:
+    container_name: mysqldb
+    image: mysql
+    restart: always
+    build: ./mysql
+    environment:
+      MYSQL_DATABASE: 'db'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'password'
+  backend:
+   container_name: gfg-backend
+   image: openjdk:12-jdk-alpine
+   build: ./backend
+   depends_on:
+     - mysqldb
+   ports:
+     - 8080:8080
+   environment:
+     WAIT_HOSTS: mysqldb:3306
+     MYSQL_DATABASE: 'db'
+     MYSQL_USER: 'user'
+     MYSQL_PASSWORD: 'password'
+     MYSQL_HOST: mysqldb
+  frontend:
+    container_name: gfg-frontend
+    ports:
+      - 3000:80
+    build: ./frontend
+
