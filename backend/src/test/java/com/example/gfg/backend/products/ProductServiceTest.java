@@ -1,6 +1,7 @@
 package com.example.gfg.backend.products;
 
 import com.example.gfg.backend.products.data.Product;
+import com.example.gfg.backend.products.dto.ProductMapper;
 import com.example.gfg.backend.products.repository.ProductRepository;
 import com.example.gfg.backend.products.service.ProductService;
 import org.junit.Assert;
@@ -19,17 +20,22 @@ import static org.mockito.Mockito.*;
 public class ProductServiceTest {
     @Autowired
     ProductService productService;
+
     private ProductRepository mockedProductRepository;
+    private ProductMapper mockedProductMapper;
 
     @Before
     public void setUp() {
         mockedProductRepository = mock(ProductRepository.class);
-        productService = new ProductService(mockedProductRepository);
+        mockedProductMapper = mock(ProductMapper.class);
+
+        productService = new ProductService(mockedProductRepository, mockedProductMapper);
         ReflectionTestUtils.setField(productService, "repository", mockedProductRepository);
     }
 
     @Test
     public void getAllProducts() {
+        ProductMapper productMapper = new ProductMapper();
         List<Product> products = new ArrayList<>();
         Product product = new Product();
 
@@ -41,7 +47,9 @@ public class ProductServiceTest {
         products.add(product);
 
         when(mockedProductRepository.findAll()).thenReturn(products);
-        Assert.assertEquals(productService.getAllProducts().getProducts(), products);
+        when(mockedProductMapper.toProductDTOs(anyList())).thenReturn(productMapper.toProductDTOs(products));
+
+        Assert.assertEquals(productService.getAllProducts().getProducts(), productMapper.toProductDTOs(products));
     }
 
     @Test
